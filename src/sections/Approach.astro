@@ -1,0 +1,62 @@
+---
+import ApproachCard from '../components/ApproachCard.astro';
+
+const steps = [
+  {
+    title: 'Understand Before Building',
+    description: 'Most teams ask for an app. They usually need a better process. We observe, interview, and map workflows until the real problem surfaces — not the symptom.',
+  },
+  {
+    title: 'Custom Fit, Not Force Fit',
+    description: 'Off-the-shelf tools force your team to adapt. We design solutions that mold to how your business actually operates — preserving what works, fixing what doesn\'t.',
+  },
+  {
+    title: 'Built for Change',
+    description: 'Your business will evolve. Your tools should too. We architect for flexibility — modular, extensible systems that adapt without expensive rewrites or vendor lock-in.',
+  },
+  {
+    title: 'You Own Everything',
+    description: 'No moats. No dependency. Every engagement ends with your team fully owning the system, the knowledge, and the confidence to evolve it independently.',
+  },
+];
+---
+
+<section class="approach" id="approach">
+  <p class="section-tag reveal">How We Work</p>
+  <h2 class="section-title reveal">Problem first.<br>Always.</h2>
+  <p class="section-desc reveal">Every failed system we've seen started with the wrong question. We start by understanding — deeply — what's actually broken, then design solutions that fit like they were always there.</p>
+
+  <div class="approach-grid reveal stagger-reveal">
+    {steps.map((step, i) => (
+      <ApproachCard number={i + 1} title={step.title} description={step.description} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .approach {
+    position: relative;
+    overflow: hidden;
+  }
+  .approach::before {
+    content: '';
+    position: absolute;
+    bottom: -20%; left: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,255,0,0.025) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 56px;
+    background: var(--gray-2);
+  }
+  @media (max-width: 960px) {
+    .approach-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .approach-grid { grid-template-columns: 1fr; }
+  }
+</style>

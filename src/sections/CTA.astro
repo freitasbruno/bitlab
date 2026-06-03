@@ -1,0 +1,38 @@
+---
+---
+
+<section class="cta-section" id="contact">
+  <p class="section-tag reveal">Let's Talk</p>
+  <h2 class="section-title reveal">Your workflow<br>deserves better</h2>
+  <p class="section-desc reveal">Whether you need a custom tool, AI strategy, or someone to untangle a broken process — we're ready.</p>
+  <div class="cta-actions reveal">
+    <a href="mailto:bfreitas@bitlab.pt" class="btn-primary">bfreitas@bitlab.pt →</a>
+    <a href="#products" class="btn-secondary">Explore Products</a>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,255,0,0.04) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-section .section-title { max-width: 560px; margin: 0 auto; }
+  .cta-section .section-desc  { margin: 18px auto 0; }
+  .cta-actions { margin-top: 44px; display: flex; gap: 16px; }
+
+  @media (max-width: 960px) {
+    .cta-actions { flex-direction: column; }
+  }
+</style>

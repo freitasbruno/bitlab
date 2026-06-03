@@ -1,0 +1,152 @@
+---
+import StatusBadge from './StatusBadge.astro';
+
+const { project } = Astro.props;
+const { name, status, url, icon, media, description, aecDomains } = project.data;
+
+const firstMedia = media?.[0];
+const bgImage = firstMedia?.type === 'image' ? firstMedia.src : (firstMedia?.poster ?? null);
+const dataMedia = media ? JSON.stringify(media) : null;
+---
+
+<div
+  class="product-card"
+  data-media={dataMedia}
+  style={bgImage ? `--bg-image: url('${bgImage}')` : ''}
+>
+  {bgImage && <div class="product-bg"></div>}
+  {bgImage && <div class="product-overlay"></div>}
+
+  <div class="product-content">
+    {aecDomains ? (
+      <div class="aec-domains">
+        {aecDomains.map((d) => <span class="aec-domain-tag">{d}</span>)}
+      </div>
+    ) : (
+      icon && <img src={icon} class="product-icon" alt="" />
+    )}
+    <StatusBadge status={status} />
+    <h3>{name}</h3>
+    {url && <div class="product-url">{url.replace('https://', '')}</div>}
+    <p>{description}</p>
+    {url && (
+      <a href={url} class="product-card-link" target="_blank" rel="noopener noreferrer">
+        {url.replace('https://', '')}
+      </a>
+    )}
+  </div>
+</div>
+
+<style>
+  .product-card {
+    position: relative;
+    overflow: hidden;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid var(--gray-2);
+    background: var(--gray-1);
+    cursor: default;
+    transition: border-color 0.5s ease;
+  }
+  .product-card[data-media] { cursor: pointer; }
+  .product-card:hover { border-color: var(--accent); }
+
+  .product-bg {
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: top center;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 0.65s var(--ease-out), transform 0.9s var(--ease-out);
+  }
+  .product-card:hover .product-bg { opacity: 1; transform: scale(1); }
+
+  .product-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,10,10,0.05) 0%,
+      rgba(10,10,10,0.7) 45%,
+      rgba(10,10,10,0.97) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.65s ease;
+  }
+  .product-card:hover .product-overlay { opacity: 1; }
+
+  .product-content {
+    position: relative;
+    z-index: 1;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-icon {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    object-position: left center;
+    margin-bottom: 22px;
+    transition: filter 0.45s ease, opacity 0.45s ease;
+    display: block;
+  }
+  .product-card:hover .product-icon { filter: grayscale(100%); opacity: 0.55; }
+
+  .product-card h3 { font-size: 26px; font-weight: 700; margin-bottom: 8px; line-height: 1.1; }
+
+  .product-url {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gray-3);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .product-card p { font-size: 14px; color: var(--gray-3); line-height: 1.75; max-width: 440px; }
+
+  .product-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray-3);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .product-card-link:hover { color: var(--accent); }
+  .product-card-link::after { content: '↗'; }
+
+  .aec-domains {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .aec-domain-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid rgba(200,255,0,0.2);
+    color: rgba(200,255,0,0.45);
+    transition: border-color 0.4s, color 0.4s;
+  }
+  .product-card:hover .aec-domain-tag {
+    border-color: rgba(200,255,0,0.45);
+    color: rgba(200,255,0,0.8);
+  }
+
+  @media (max-width: 960px) {
+    .product-card { height: 380px; }
+  }
+</style>

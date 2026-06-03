@@ -1,0 +1,49 @@
+---
+const { icon, title, description, tags } = Astro.props;
+---
+
+<div class="cap-card">
+  <span class="cap-icon">{icon}</span>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  {tags && (
+    <div class="cap-tags">
+      {tags.map((tag) => <span class="cap-tag">{tag}</span>)}
+    </div>
+  )}
+</div>
+
+<style>
+  .cap-card {
+    background: var(--gray-1);
+    padding: 44px 40px;
+    transition: all 0.4s;
+    position: relative;
+  }
+  .cap-card:hover { background: rgba(200,255,0,0.015); }
+  .cap-icon {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .cap-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+  .cap-card p  { font-size: 14px; color: var(--gray-3); line-height: 1.7; }
+  .cap-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .cap-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(200,255,0,0.06);
+    color: var(--accent);
+    border-radius: 2px;
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+---
+
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <p class="hero-tag">Workflow Tools · AI Consultancy · Intelligent Systems</p>
+  <h1>Simple systems<br>that build your <em>future</em></h1>
+  <p class="hero-sub">Workflow automation, AI strategy, and purpose-built tools for teams who are done duct-taping processes together.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Start a Conversation →</a>
+    <a href="#products" class="btn-secondary">See Our Work</a>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 48px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,255,0,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,255,0,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 75%);
+  }
+  .hero-glow {
+    position: absolute; top: -25%; right: -15%;
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(200,255,0,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-glow-2 {
+    position: absolute; bottom: -30%; left: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,255,0,0.03) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero h1 {
+    font-size: clamp(44px, 6.5vw, 88px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -2px;
+    max-width: 880px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+    display: inline-block;
+  }
+  .hero h1 em::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    opacity: 0.25;
+  }
+  .hero-sub {
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--gray-4);
+    max-width: 540px;
+    margin-top: 28px;
+    line-height: 1.65;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 44px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  @media (max-width: 960px) {
+    .hero { padding-left: 24px; padding-right: 24px; }
+    .hero-actions { flex-direction: column; }
+  }
+</style>

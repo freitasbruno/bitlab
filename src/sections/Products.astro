@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import ProductCard from '../components/ProductCard.astro';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+
+<section class="products-section" id="products">
+  <p class="section-tag reveal">Products</p>
+  <h2 class="section-title reveal">Tools we've shipped<br>for real problems</h2>
+  <p class="section-desc reveal">Each product targets a pain point we've lived through. The best tools come from understanding the problem firsthand.</p>
+
+  <div class="products-grid reveal stagger-reveal">
+    {projects.map((project) => (
+      <ProductCard project={project} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .products-section { position: relative; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 56px;
+  }
+  @media (max-width: 960px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>

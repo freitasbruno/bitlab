@@ -1,0 +1,40 @@
+---
+---
+
+<footer>
+  <div class="footer-left">© 2026 BitLab — We build intelligent systems.</div>
+  <div class="footer-links">
+    <a href="/#services">Services</a>
+    <a href="/#products">Products</a>
+    <a href="/#capabilities">Capabilities</a>
+    <a href="mailto:bfreitas@bitlab.pt">Contact</a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--gray-2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-left {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gray-3);
+    letter-spacing: 1px;
+  }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-size: 12px;
+    color: var(--gray-3);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  @media (max-width: 960px) {
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+  }
+</style>

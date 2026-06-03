@@ -1,0 +1,68 @@
+---
+import CapabilityCard from '../components/CapabilityCard.astro';
+
+const capabilities = [
+  {
+    icon: '⟁',
+    title: 'Agentic Workflows',
+    description: 'Autonomous AI agents that handle multi-step operations — from document processing to decision routing — without human babysitting at every checkpoint.',
+    tags: ['LLM Orchestration', 'Tool Use', 'Human-in-the-Loop'],
+  },
+  {
+    icon: '◉',
+    title: 'Intelligent Interfaces',
+    description: 'UIs that adapt, predict, and surface what matters. We build frontends where AI works behind the scenes so users get answers — not more clicks.',
+    tags: ['Conversational UI', 'Smart Search', 'Contextual AI'],
+  },
+  {
+    icon: '⬡',
+    title: 'Modern Stack, No Baggage',
+    description: 'We ship on modern frameworks, deploy through CI/CD, and iterate fast. No vendor lock-in, no bloated enterprise platforms, no technical debt from day one.',
+    tags: ['React / Next.js', 'Python', 'CI/CD', 'Cloud-Native'],
+  },
+  {
+    icon: '△',
+    title: 'Domain Intelligence',
+    description: '10+ years in AEC and IT delivery means we understand the workflows before writing code. Construction coordination, project delivery, property management — we\'ve lived these problems.',
+    tags: ['AEC', 'Real Estate', 'IT Delivery', 'Change Mgmt'],
+  },
+];
+---
+
+<section class="capabilities" id="capabilities">
+  <p class="section-tag reveal">Built Different</p>
+  <h2 class="section-title reveal">AI-native from<br>the ground up</h2>
+  <p class="section-desc reveal">We don't bolt AI onto legacy processes. We design systems where intelligence is the architecture — not the afterthought.</p>
+
+  <div class="cap-grid reveal stagger-reveal">
+    {capabilities.map((cap) => (
+      <CapabilityCard {...cap} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .capabilities {
+    background: var(--gray-1);
+    position: relative;
+    overflow: hidden;
+  }
+  .capabilities::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,255,0,0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cap-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    margin-top: 56px;
+    background: var(--gray-2);
+  }
+  @media (max-width: 960px) {
+    .cap-grid { grid-template-columns: 1fr; }
+  }
+</style>

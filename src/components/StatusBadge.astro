@@ -1,0 +1,30 @@
+---
+const { status } = Astro.props;
+
+const labels = {
+  live: 'MVP',
+  beta: 'Public Beta',
+  building: 'In Development',
+  upcoming: 'Upcoming',
+};
+---
+
+<span class={`status-badge status-${status}`}>{labels[status]}</span>
+
+<style>
+  .status-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid;
+    display: inline-block;
+    margin-bottom: 14px;
+    width: fit-content;
+  }
+  .status-live     { color: var(--accent); border-color: var(--accent); }
+  .status-beta     { color: #7df9ff; border-color: #7df9ff; }
+  .status-building { color: #ff9f43; border-color: #ff9f43; }
+  .status-upcoming { color: rgba(200,255,0,0.5); border-color: rgba(200,255,0,0.22); }
+</style>

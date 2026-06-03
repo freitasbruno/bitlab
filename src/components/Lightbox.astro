@@ -1,0 +1,133 @@
+---
+---
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lb-close" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev" aria-label="Previous">←</button>
+  <img class="lightbox-img" id="lb-img" src="" alt="" />
+  <video class="lightbox-video" id="lb-video" controls muted loop style="display:none"></video>
+  <button class="lightbox-nav lightbox-next" id="lb-next" aria-label="Next">→</button>
+  <div class="lightbox-counter" id="lb-counter"></div>
+</div>
+
+<script>
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbVideo = document.getElementById('lb-video');
+  const lbCount = document.getElementById('lb-counter');
+  const lbPrev  = document.getElementById('lb-prev');
+  const lbNext  = document.getElementById('lb-next');
+  let media = [], cur = 0;
+
+  function lbShow(idx) {
+    cur = (idx + media.length) % media.length;
+    const item = media[cur];
+    if (item.type === 'video') {
+      lbImg.style.display = 'none';
+      lbVideo.style.display = '';
+      lbVideo.src = item.src;
+      lbVideo.play();
+    } else {
+      lbVideo.style.display = 'none';
+      lbVideo.pause();
+      lbVideo.src = '';
+      lbImg.style.display = '';
+      lbImg.src = item.src;
+      lbImg.alt = item.alt ?? '';
+    }
+    lbCount.textContent = media.length > 1 ? `${cur + 1} / ${media.length}` : '';
+    lbPrev.style.display = media.length > 1 ? '' : 'none';
+    lbNext.style.display = media.length > 1 ? '' : 'none';
+  }
+
+  function lbOpen(items) {
+    media = items;
+    lbShow(0);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function lbClose() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbVideo.pause();
+    lbVideo.src = '';
+  }
+
+  document.querySelectorAll('.product-card[data-media]').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      const items = JSON.parse(card.dataset.media);
+      lbOpen(items);
+    });
+  });
+
+  document.getElementById('lb-close').addEventListener('click', lbClose);
+  lbPrev.addEventListener('click', e => { e.stopPropagation(); lbShow(cur - 1); });
+  lbNext.addEventListener('click', e => { e.stopPropagation(); lbShow(cur + 1); });
+  lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     lbClose();
+    if (e.key === 'ArrowLeft')  lbShow(cur - 1);
+    if (e.key === 'ArrowRight') lbShow(cur + 1);
+  });
+</script>
+
+<style>
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-img,
+  .lightbox-video {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border: 1px solid rgba(200,255,0,0.15);
+    box-shadow: 0 0 80px rgba(0,0,0,0.8);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px; right: 28px;
+    font-size: 28px;
+    color: var(--gray-3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .lightbox-close:hover { color: var(--accent); }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: var(--gray-3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 18px;
+    transition: color 0.2s;
+  }
+  .lightbox-nav:hover { color: var(--accent); }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+  .lightbox-counter {
+    position: absolute;
+    bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gray-3);
+  }
+</style>
