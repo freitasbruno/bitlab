@@ -7,6 +7,6 @@ media:
   - type: image
     src: /images/Boltflow_Screenshot.jpg
     alt: Boltflow task manager
-description: Efficiency manager and agile task list. Fast, clean project visibility for teams who want to ship work — not manage tools.
-order: 3
+description: Intelligent personal management suite. Tasks, habits, focus, and priorities in one place — with AI that helps you decide what actually matters today.
+order: 2
 ---

@@ -1,0 +1,74 @@
+---
+const { name, tagline, description, category, href } = Astro.props;
+---
+
+<div class="lab-card">
+  <div class="lab-card-top">
+    <span class="lab-category">{category}</span>
+    {href && <a href={href} class="lab-link" target="_blank" rel="noopener noreferrer">↗</a>}
+  </div>
+  <h3>{name}</h3>
+  <p class="lab-tagline">{tagline}</p>
+  <p class="lab-desc">{description}</p>
+</div>
+
+<style>
+  .lab-card {
+    background: var(--black);
+    padding: 36px 32px;
+    border: 1px solid var(--gray-2);
+    position: relative;
+    transition: border-color 0.4s, background 0.4s;
+    display: flex;
+    flex-direction: column;
+  }
+  .lab-card:hover {
+    border-color: rgba(200,255,0,0.2);
+    background: rgba(200,255,0,0.008);
+  }
+  .lab-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .lab-category {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    background: rgba(200,255,0,0.04);
+    border: 1px solid rgba(200,255,0,0.1);
+    color: rgba(200,255,0,0.4);
+    border-radius: 2px;
+  }
+  .lab-link {
+    font-size: 16px;
+    color: var(--gray-2);
+    text-decoration: none;
+    transition: color 0.3s;
+    line-height: 1;
+  }
+  .lab-card:hover .lab-link { color: var(--accent); }
+  .lab-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .lab-tagline {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .lab-desc {
+    font-size: 13px;
+    color: var(--gray-3);
+    line-height: 1.7;
+    margin-top: auto;
+  }
+</style>

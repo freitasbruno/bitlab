@@ -4,6 +4,7 @@ const { status } = Astro.props;
 const labels = {
   live: 'MVP',
   beta: 'Public Beta',
+  'private-beta': 'Private Beta',
   building: 'In Development',
   upcoming: 'Upcoming',
 };
@@ -23,8 +24,9 @@ const labels = {
     margin-bottom: 14px;
     width: fit-content;
   }
-  .status-live     { color: var(--accent); border-color: var(--accent); }
-  .status-beta     { color: #7df9ff; border-color: #7df9ff; }
-  .status-building { color: #ff9f43; border-color: #ff9f43; }
-  .status-upcoming { color: rgba(200,255,0,0.5); border-color: rgba(200,255,0,0.22); }
+  .status-live         { color: var(--accent); border-color: var(--accent); }
+  .status-beta         { color: #7df9ff; border-color: #7df9ff; }
+  .status-private-beta { color: #b39ddb; border-color: #b39ddb; }
+  .status-building     { color: #ff9f43; border-color: #ff9f43; }
+  .status-upcoming     { color: rgba(200,255,0,0.5); border-color: rgba(200,255,0,0.22); }
 </style>

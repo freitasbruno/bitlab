@@ -14,5 +14,5 @@ media:
     src: /images/Vendido_Screenshot_3.png
     alt: Vendido listing view
 description: Double blind AI-powered real estate search for the Portuguese market. Intelligent matching, market insights, and an interface built for decisions — not just scrolling.
-order: 1
+order: 3
 ---

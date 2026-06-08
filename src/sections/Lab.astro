@@ -1,0 +1,65 @@
+---
+import LabCard from '../components/LabCard.astro';
+
+const experiments = [
+  {
+    name: 'XPlorers',
+    category: 'Education',
+    tagline: 'Micro-lessons for curious families',
+    description: 'Short, discussion-ready knowledge bites about the cosmos, history, and ideas — designed for the commute or the dinner table. In Portuguese, for all ages.',
+    href: null,
+  },
+  {
+    name: 'BStack',
+    category: 'Developer Tooling',
+    tagline: 'Opinionated skill harness for Claude Code',
+    description: 'A structured set of slash-command skills — plan, build, review, verify, ship — that enforce conventions and keep AI-assisted development coherent across sessions.',
+    href: null,
+  },
+  {
+    name: 'Sparky',
+    category: 'AI Research',
+    tagline: 'Local agent routing on small models',
+    description: 'Testing whether small, local LLMs (Gemma via Ollama) can reliably route tasks and chain multi-step operations — no cloud API required.',
+    href: null,
+  },
+];
+---
+
+<section class="lab-section" id="lab">
+  <p class="section-tag reveal">Running Experiments</p>
+  <h2 class="section-title reveal">Things we're<br>figuring out</h2>
+  <p class="section-desc reveal">Not every idea becomes a product. These are live experiments — some will evolve into something, some won't. We build them because we're curious.</p>
+
+  <div class="lab-grid reveal stagger-reveal">
+    {experiments.map((exp) => (
+      <LabCard {...exp} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .lab-section {
+    background: var(--gray-1);
+    position: relative;
+    overflow: hidden;
+  }
+  .lab-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 500px; height: 400px;
+    background: radial-gradient(circle, rgba(200,255,0,0.025) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .lab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+
+  @media (max-width: 960px) {
+    .lab-grid { grid-template-columns: 1fr; }
+  }
+</style>

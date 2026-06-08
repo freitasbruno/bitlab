@@ -5,7 +5,7 @@ const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     name: z.string(),
-    status: z.enum(['live', 'beta', 'building', 'upcoming']),
+    status: z.enum(['live', 'beta', 'private-beta', 'building', 'upcoming']),
     url: z.string().optional(),
     icon: z.string().optional(),
     media: z.array(

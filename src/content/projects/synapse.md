@@ -7,6 +7,6 @@ media:
   - type: image
     src: /images/Synapse_Screenshot.jpg
     alt: Synapse use case library
-description: Community use case library for AI adoption. Discover, contribute, and explore how AI is being applied across industries — curated by practitioners, not vendors.
-order: 2
+description: Open-access community portal for discovering and sharing AI assets — prompts, tools, apps, and workflows. Browse freely, contribute as a member, and polish your work with built-in AI refinement tools.
+order: 4
 ---
