@@ -1,4 +1,8 @@
 ---
+interface Props {
+  status: 'live' | 'beta' | 'private-beta' | 'building' | 'upcoming';
+}
+
 const { status } = Astro.props;
 
 const labels = {

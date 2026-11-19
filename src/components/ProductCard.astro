@@ -20,7 +20,7 @@ const dataMedia = media ? JSON.stringify(media) : null;
   <div class="product-content">
     {aecDomains ? (
       <div class="aec-domains">
-        {aecDomains.map((d) => <span class="aec-domain-tag">{d}</span>)}
+        {aecDomains.map((d: string) => <span class="aec-domain-tag">{d}</span>)}
       </div>
     ) : (
       icon && <img src={icon} class="product-icon" alt="" />

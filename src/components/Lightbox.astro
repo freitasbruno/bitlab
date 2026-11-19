@@ -11,15 +11,17 @@
 </div>
 
 <script>
-  const lb      = document.getElementById('lightbox');
-  const lbImg   = document.getElementById('lb-img');
-  const lbVideo = document.getElementById('lb-video');
-  const lbCount = document.getElementById('lb-counter');
-  const lbPrev  = document.getElementById('lb-prev');
-  const lbNext  = document.getElementById('lb-next');
-  let media = [], cur = 0;
+  type MediaItem = { type: 'image' | 'video'; src: string; alt?: string; poster?: string };
 
-  function lbShow(idx) {
+  const lb      = document.getElementById('lightbox')!;
+  const lbImg   = document.getElementById('lb-img') as HTMLImageElement;
+  const lbVideo = document.getElementById('lb-video') as HTMLVideoElement;
+  const lbCount = document.getElementById('lb-counter')!;
+  const lbPrev  = document.getElementById('lb-prev')!;
+  const lbNext  = document.getElementById('lb-next')!;
+  let media: MediaItem[] = [], cur = 0;
+
+  function lbShow(idx: number) {
     cur = (idx + media.length) % media.length;
     const item = media[cur];
     if (item.type === 'video') {
@@ -40,7 +42,7 @@
     lbNext.style.display = media.length > 1 ? '' : 'none';
   }
 
-  function lbOpen(items) {
+  function lbOpen(items: MediaItem[]) {
     media = items;
     lbShow(0);
     lb.classList.add('open');
@@ -54,15 +56,15 @@
     lbVideo.src = '';
   }
 
-  document.querySelectorAll('.product-card[data-media]').forEach(card => {
+  document.querySelectorAll<HTMLElement>('.product-card[data-media]').forEach(card => {
     card.addEventListener('click', e => {
-      if (e.target.closest('a')) return;
-      const items = JSON.parse(card.dataset.media);
+      if ((e.target as HTMLElement).closest('a')) return;
+      const items = JSON.parse(card.dataset.media!);
       lbOpen(items);
     });
   });
 
-  document.getElementById('lb-close').addEventListener('click', lbClose);
+  document.getElementById('lb-close')!.addEventListener('click', lbClose);
   lbPrev.addEventListener('click', e => { e.stopPropagation(); lbShow(cur - 1); });
   lbNext.addEventListener('click', e => { e.stopPropagation(); lbShow(cur + 1); });
   lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
